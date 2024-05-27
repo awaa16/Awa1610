@@ -47,10 +47,13 @@
           '<td>' + data.nama + '</td>' +
           '<td>' + formatAngka(data.harga) + '</td>' +
           '<td>' + data.stok + '</td>' +
-          '<td>' + '<button class="btn btn-danger tombol-hapus" data="' + data.id + '">Hapus</button>' + 
-          '</td>' +
-          '<img src="loader.gif"style="width:1em display: none"id="'+ data.id +
-          '">'+
+          '<td>' + '<button class="btn btn-danger tombol-hapus" data>' + '<td class="stack-up">' +
+            ' <a href="#" class="btn btn-warning link-ubah"  data="' +
+            data.id +
+              '">ubah</a> '
+          + ' <button class="btn btn-danger tombol-hapus" data="' +
+          data.id +
+          '">Hapus</button>' + '</td>' +
           '</tr>'
         );
         nomor = nomor + 1;
@@ -64,6 +67,11 @@
         await hapusProduk($(this).attr('data'));
         location.reload();
       });
+      $('.link-ubah').click(async function() {
+        window.location.replace('ubah-produk.html?docId=' + $(this).attr('data'));
+      })
+
+      $('#loader').hide();
 
     });
   </script>

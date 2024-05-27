@@ -63,3 +63,17 @@ export async function tambahProduk(nama, harga, stok) {
 export async function hapusProduk(docid) {
   await deleteDoc(doc(db, "produk", docid));
 }
+export async function ubahProduk(docId, nama, harga, stok) {
+  await updateDoc(doc(db, "produk", docId), {
+    nama: nama,
+    harga: harga,
+    stok: stok
+  });
+}
+
+export async function ambilProduk(docId) {
+  const docRef = await doc(db, "produk", docId);
+  const docSnap = await getDoc(docRef);
+
+  return await docSnap.data();
+}
